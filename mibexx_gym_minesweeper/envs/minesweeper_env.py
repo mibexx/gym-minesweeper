@@ -13,7 +13,7 @@ class MinesweeperEnv(gym.Env):
     def __init__(self, game_size=GAME_SIZE, num_mines=NUM_MINES):
         self.game_size = game_size
         self.num_mines = NUM_MINES
-        self.observation_space = spaces.Box(low=-2, high=9, shape=(self.game_size, self.game_size), dtype=np.int)
+        self.observation_space = spaces.Box(low=-2, high=8, shape=(self.game_size, self.game_size), dtype=np.int)
         self.action_space = spaces.MultiDiscrete([self.game_size, self.game_size])
         self.state = np.zeros(shape=(self.game_size, self.game_size), dtype=np.int)
         self.mines = np.zeros(shape=(self.num_mines, 2), dtype=np.int)
@@ -25,11 +25,15 @@ class MinesweeperEnv(gym.Env):
         y, x = action
         field_value = self.state[y][x]
 
-        if field_value == -1:
-            reward = -1
-        elif field_value == -2:
+        field_pos = np.array([[y], [x]])
+        field_pos = np.ravel_multi_index(field_pos, dims=(self.game_size, self.game_size))
+
+        if len(np.where(self.mines == field_pos)[0]) > 0:
             reward = -10
+            self.state[y][x] = -2
             done = True
+        elif field_value == -1:
+            reward = -1
         else:
             self._compute_action(action)
 

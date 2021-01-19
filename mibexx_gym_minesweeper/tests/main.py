@@ -3,8 +3,6 @@ import gym
 env = gym.make('mibexx_gym_minesweeper:mibexx-gym-minesweeper-v0')
 env.reset()
 
-env.render()
-
 print("Observation space: ", env.observation_space.shape)
 print("Action space: ", env.action_space.nvec)
 
