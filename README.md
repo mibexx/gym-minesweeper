@@ -5,6 +5,18 @@ A simple minesweeper environment for gym.
 ## Goal
 Goal is to reveal all fields without a mine.
 
+## Install
+
+### PIP
+```
+pip install mibexx-gym-minesweeper
+```
+
+### Source
+```
+pip install -e .
+```
+
 ## Initialize
 ```python
 import gym
