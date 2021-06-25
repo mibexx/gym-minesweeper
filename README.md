@@ -72,6 +72,7 @@ state, reward, done, _ = env.step((3, 2))
 
 
 ## Rewards
+win match: 10  
 empty field: 1  
 already clicked field: -1   
 a mine: -10  
