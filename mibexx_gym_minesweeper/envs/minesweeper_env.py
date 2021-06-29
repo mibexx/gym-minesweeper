@@ -41,7 +41,7 @@ class MinesweeperEnv(gym.Env):
 
         unique, counts = np.unique(self.state, return_counts=True)
         state_counts = dict(zip(unique, counts))
-        if state_counts[0] == self.num_mines:
+        if state_counts[0] == self.num_mines: # If count of unrevealed fields (0) is equal to the number of mines
             reward = 10
             done = True
 
