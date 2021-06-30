@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='mibexx_gym_minesweeper',
-    version='0.0.5',
+    version='0.0.6',
     license='MIT',
     install_requires=['gym', 'numpy'],
     author='Mike Bertram',

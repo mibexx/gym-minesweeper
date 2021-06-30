@@ -30,8 +30,8 @@ env.reset()
 
 ### State
 Observation space:  (9, 9)  
-Low: -2  
-High: 8
+Low: -3  
+High: 8  
 
 ```
 [[0 0 0 0 0 0 0 0 0]
@@ -48,6 +48,7 @@ High: 8
 #### Values
 | Value | Description |
 | ----- | ----------- |
+| -3 | Flag |
 | -2 | Mine |
 | -1 | Empty field, no mine near |
 | 0 | Not revealed |
@@ -61,13 +62,16 @@ High: 8
 | 8 | Revealed, 8 mines near |
 
 ### Actions
-Action space:  [9 9]
+Action space (depends on field size):  [9 9 2]
 
-Action is a (y,x) tuple.
+Action is a (y,x,a) tuple.
 
 Example for row 3 col 2:
 ```python
-state, reward, done, _ = env.step((3, 2))
+# Left click on y=3 and x=2
+state, reward, done, _ = env.step((3, 2, 1))
+# Right click on y=3 and x=2
+state, reward, done, _ = env.step((3, 2, 2))
 ```
 
 
@@ -75,4 +79,6 @@ state, reward, done, _ = env.step((3, 2))
 win match: 10  
 empty field: 1  
 already clicked field: -1   
-a mine: -10  
+a mine: -10
+right click on unrevealed field with a mine: 2
+right click on flagged field with a mine: -2
